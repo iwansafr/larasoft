@@ -38,7 +38,7 @@
           @include('form.feedback',['name'=>'name'])
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email">
+          <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{old('email')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -47,7 +47,7 @@
           @include('form.feedback',['name'=>'email'])
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" value="{{old('password')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -56,7 +56,7 @@
           @include('form.feedback',['name'=>'password'])
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Retype password">
+          <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Retype password" value="{{old('passowrd_confirmation')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

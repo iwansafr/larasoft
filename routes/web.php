@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('page.index');
         });
+        Route::get('/user/edit/{number}', [UserController::class, 'edit']);
+        Route::post('/user/save', [UserController::class, 'save']);
     });
 });
 

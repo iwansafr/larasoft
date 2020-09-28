@@ -21,9 +21,9 @@
     reserved.
   </footer>
 
-  <aside class="control-sidebar control-sidebar-dark">
+  {{-- <aside class="control-sidebar control-sidebar-dark">
 
-  </aside>
+  </aside> --}}
 
 </div>
 
