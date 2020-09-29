@@ -20,22 +20,31 @@
       <div class="row">
         <div class="col-12">
           <div class="card card-secondary">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="/admin/user/save" method="post" enctype="multipart/form-data">
+              @csrf
               <div class="card-header">
                 <h3 class="card-title">Update User Data</h3>
               </div>
               <div class="card-body">
+                @include('form.alert',['title'=>'error','type'=>'danger'])
+                @include('form.alert',['title'=>'success','type'=>'success'])
+                @if (!empty($data->id))
+                  <input type="hidden" name="id" value="{{$data->id}}">
+                @endif
                 <div class="form-group">
                   @include('form.select',['name'=>'role','data'=>['1'=>'root','2'=>'admin','3'=>'member']])
                 </div>
                 <div class="form-group">
-                  @include('form.text',['name'=>'name'])
+                  @include('form.text',['name'=>'name','value'=>$data->name])
                 </div>
                 <div class="form-group">
-                  @include('form.text',['name'=>'email','type'=>'email'])
+                  @include('form.text',['name'=>'email','type'=>'email','value'=>$data->email])
                 </div>
                 <div class="form-group">
                   @include('form.text',['name'=>'password','type'=>'password'])
+                </div>
+                <div class="form-group">
+                  @include('form.text',['name'=>'password_confirmation','type'=>'password'])
                 </div>
               </div>
               <div class="card-footer">
