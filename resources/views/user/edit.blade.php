@@ -9,11 +9,11 @@
     'header'=>'Edit User',
     'link'=>[
       [
-        'link'=>'admin/user/list',
+        'admin/user/list'
         'title'=>'User'
       ],
       [
-        'link'=>'',
+        '',
         'title'=>'Edit'
       ]
     ]
@@ -23,25 +23,19 @@
       <div class="row">
         <div class="col-12">
           <div class="card card-secondary">
-            <form action="/admin/user/save" method="post" enctype="multipart/form-data">
+            <form action="/admin/profile/update" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card-header">
-                <h3 class="card-title">Update User Data</h3>
+                <h3 class="card-title">{{__('Update User Data')}}</h3>
               </div>
               <div class="card-body">
                 @include('form.alert',['title'=>'error','type'=>'danger'])
                 @include('form.alert',['title'=>'success','type'=>'success'])
-                @if (!empty($data->id))
-                  <input type="hidden" name="id" value="{{$data->id}}">
-                @endif
                 <div class="form-group">
-                  @include('form.select',['name'=>'role','data'=>['1'=>'root','2'=>'admin','3'=>'member']])
+                  @include('form.text',['name'=>'name','value'=>$user->name])
                 </div>
                 <div class="form-group">
-                  @include('form.text',['name'=>'name','value'=>$data->name])
-                </div>
-                <div class="form-group">
-                  @include('form.text',['name'=>'email','type'=>'email','value'=>$data->email])
+                  @include('form.text',['name'=>'email','type'=>'email','value'=>$user->email])
                 </div>
                 <div class="form-group">
                   @include('form.text',['name'=>'password','type'=>'password'])
@@ -51,8 +45,8 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-sm btn-success"> <i class="fa fa-save"></i> Simpan</button>
-                <button class="btn btn-sm btn-warning"> <i class="fa fa-undo"></i> Reset</button>
+                <button class="btn btn-sm btn-success"> <i class="fa fa-save"></i> {{__('Simpan')}}</button>
+                <button class="btn btn-sm btn-warning"> <i class="fa fa-undo"></i> {{__('Reset')}}</button>
               </div>
             </form>
           </div>

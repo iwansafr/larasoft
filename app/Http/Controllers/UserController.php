@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function edit($id)
+    public function edit()
     {
-        $user = User::find($id);
-        return view('user.edit', ['data' => $user]);
+        return view('user.edit')->with('user', auth()->user());
+    }
+    public function list()
+    {
+        return view('user.list');
     }
     public function save(Request $request)
     {

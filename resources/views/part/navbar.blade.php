@@ -118,7 +118,7 @@
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span class="dropdown-item dropdown-header">{{Auth::user()->email}}</span>
         <div class="dropdown-divider"></div>
-        <a href="/admin/user/edit/{{Auth::user()->id}}" class="dropdown-item">
+        <a href="/admin/profile/edit" class="dropdown-item">
           <i class="fas fa-edit mr-2"></i> Edit Profil
           <span class="float-right text-muted text-sm">3 mins</span>
         </a>

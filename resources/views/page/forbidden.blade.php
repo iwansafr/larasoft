@@ -1,0 +1,10 @@
+@extends('dashboard')
+@section('content')
+  @include('form.header',['header'=>'Forbidden','link'=>[
+      [
+        'link'=>'',
+        'title'=>'Forbidden',
+      ]
+    ]])
+  @include('form.error_page',['status'=>$status,'title'=>$title,'msg'=>$msg])
+@endsection

@@ -25,8 +25,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('page.index');
         });
+        Route::get('/user/list', [UserController::class, 'list'])->middleware('role:1');
         Route::get('/user/edit/{number}', [UserController::class, 'edit']);
+        Route::get('/profile/edit/', [UserController::class, 'profile_edit']);
+        Route::put('/profile/edit/', [UserController::class, 'profile_update']);
         Route::post('/user/save', [UserController::class, 'save']);
+
+        Route::get('/forbidden', function () {
+            return view('page.forbidden', ['status' => 'danger', 'title' => '404', 'msg' => 'You Dont Have Permission to Access This Page']);
+        })->name('forbidden');
     });
 });
 
