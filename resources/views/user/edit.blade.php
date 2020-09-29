@@ -9,7 +9,7 @@
     'header'=>'Edit User',
     'link'=>[
       [
-        'admin/user/list'
+        'admin/user/list',
         'title'=>'User'
       ],
       [
@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-12">
           <div class="card card-secondary">
-            <form action="/admin/profile/update" method="post" enctype="multipart/form-data">
+            <form action="/admin/profile/edit" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card-header">
                 <h3 class="card-title">{{__('Update User Data')}}</h3>
