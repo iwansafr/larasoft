@@ -26,7 +26,7 @@
             <form action="/admin/profile/edit" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card-header">
-                <h3 class="card-title">{{__('Update User Data')}}</h3>
+                <h3 class="card-title">{{__($title.' User Data')}}</h3>
               </div>
               <div class="card-body">
                 @include('form.alert',['title'=>'error','type'=>'danger'])
@@ -36,6 +36,12 @@
                 </div>
                 <div class="form-group">
                   @include('form.text',['name'=>'email','type'=>'email','value'=>$user->email])
+                </div>
+                <div class="form-group">
+                  @include('form.text',['name'=>'photo','value'=>$user->photo,'type'=>'file','accept'=>'.jpg,.jpeg,.png'])
+                  @if (!empty($user->photo))
+                    <img src="{{asset('storage/images/user/'.$user->photo)}}" class="img img-fluid" alt="" width="200">
+                  @endif
                 </div>
                 <div class="form-group">
                   @include('form.text',['name'=>'password','type'=>'password'])

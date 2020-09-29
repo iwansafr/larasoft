@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
         });
         Route::get('/user/list', [UserController::class, 'list'])->middleware('role:1');
         Route::get('/user/edit/{number}', [UserController::class, 'edit']);
-        Route::get('/profile/edit/', [UserController::class, 'profile_edit']);
-        Route::put('/profile/edit/', [UserController::class, 'profile_update']);
+        Route::get('/profile/edit/', [UserController::class, 'edit']);
+        Route::post('/profile/edit/', [UserController::class, 'edit']);
         Route::post('/user/save', [UserController::class, 'save']);
 
         Route::get('/forbidden', function () {
