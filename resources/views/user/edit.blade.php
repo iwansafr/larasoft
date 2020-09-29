@@ -1,5 +1,8 @@
 @extends('dashboard')
 
+@push('styles')
+  <link rel="stylesheet" href="/AdminLte/plugins/toastr/toastr.min.css">
+@endpush
 @section('content')
   @include('form.header',
   [
@@ -58,3 +61,14 @@
     </div>
   </section>
 @endsection
+
+@push('scripts')
+  <script src="/AdminLte/plugins/toastr/toastr.min.js"></script>
+  @if (session()->has('success'))
+  <script>
+    $(document).ready(function(){
+      toastr.success("{{session()->get('success')}}")
+    });
+  </script>
+  @endif
+@endpush

@@ -2,7 +2,7 @@
 <html>
 <head>
   @include('part.meta')
-  @stack('style')
+  @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <div class="wrapper">
