@@ -65,7 +65,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = User::find($id);
+        return view('user.detail', ['data' => $data]);
     }
 
     /**
@@ -76,7 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', ['title' => 'edit', 'method' => 'put', 'action' => 'user/' . $id, 'data' => $user]);
     }
 
     /**
@@ -88,7 +90,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validation($request, $id);
+
+        $user = User::find($id);
+        $user = $this->UserSave($request, $user);
+
+        if ($user->save()) {
+            return redirect('admin/user/' . $id . '/edit')->with('success', 'Data User Berhasil diSimpan');
+        } else {
+            return redirect('admin/user/' . $id . '/edit')->with('error', 'Data User Gagal diSimpan');
+        }
     }
 
     /**
@@ -99,7 +110,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user->delete()) {
+            return redirect('admin/user/')->with('success', 'Data User Berhasil dihapus');
+        } else {
+            return redirect('admin/user/')->with('error', 'Data User Gagal dihapus');
+        }
     }
 
     private function validation(Request $request, $id = 0)

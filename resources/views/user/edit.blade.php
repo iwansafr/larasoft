@@ -9,7 +9,7 @@
     'header'=>$title.' User',
     'link'=>[
       [
-        'admin/user/list',
+        'link'=>'/admin/user/',
         'title'=>'User'
       ],
       [

@@ -11,8 +11,8 @@
     'header'=>'Data User',
     'link'=>[
         [
-        'admin/user/list',
-        'title'=>'User'
+            'link'=>'admin/user/list',
+            'title'=>'User'
         ],
         [
         '',
@@ -26,8 +26,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <a href="/admin/user/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah User</a>
                         </div>
                         <div class="card-body">
+                            @include('form.alert',['title'=>'error','type'=>'danger'])
+                            @include('form.alert',['title'=>'success','type'=>'success'])
                             <table class="table table-bordered" id="contents-table">
                                 <thead>
                                     <tr>
@@ -53,6 +56,14 @@
 <script src="/AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="/AdminLte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/AdminLte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/AdminLte/plugins/toastr/toastr.min.js"></script>
+@if(session()->has('success'))
+  <script>
+    $(document).ready(function(){
+      toastr.success("{{session()->get('success')}}")
+    });
+  </script>
+@endif
 <script>
 $(function() {
     $('#contents-table').DataTable({
@@ -63,8 +74,26 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
-            { data: 'photo', name: 'photo' },
-            { data: 'action', name: 'action' }
+            {
+                data: 'photo',
+                name: 'photo',
+                render: function(data,type,full,meta){
+                    if(data != null){
+                        return '<img src="{{asset("storage/images/user/")}}/'+data+'" border="0" width="40" class="img-rounded" align="center" />';
+                    }else{
+                        return ' ';
+                    }
+                },
+                orderable: false
+            },
+            { 
+                data: 'id',
+                name: 'action',
+                render: function(data,type,full,meta){
+                    return '<div class="form-inline"><a href="/admin/user/'+data+'/edit/" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Edit</a> | <a href="/admin/user/'+data+'" class="btn btn-sm btn-warning"><i class="fa fa-search"></i> Detail</a> | <form action="/admin/user/'+data+'" method="post"> @csrf @method("DELETE") <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button></form></div>';
+                },
+                orderable: false
+            }
         ]
     });
 });
