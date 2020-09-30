@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserJsonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +27,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('page.index');
         });
-        Route::get('/user/list', [UserController::class, 'list'])->middleware('role:1');
-        Route::get('/user/edit/{number}', [UserController::class, 'edit']);
-        Route::get('/profile/edit/', [UserController::class, 'edit']);
-        Route::post('/profile/edit/', [UserController::class, 'edit']);
-        Route::post('/user/save', [UserController::class, 'save']);
+
+        Route::get('userjson', UserJsonController::class);
+        Route::get('profile/edit', [UserController::class, 'EditProfile']);
+        Route::put('profile/update', [UserController::class, 'UpdateProfile']);
+        Route::resource('user', UserController::class)->middleware('role:1');
+        Route::resource('content', ContentController::class);
+
 
         Route::get('/forbidden', function () {
             return view('page.forbidden', ['status' => 'danger', 'title' => '404', 'msg' => 'You Dont Have Permission to Access This Page']);

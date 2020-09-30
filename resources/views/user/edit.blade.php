@@ -6,7 +6,7 @@
 @section('content')
   @include('form.header',
   [
-    'header'=>'Edit User',
+    'header'=>$title.' User',
     'link'=>[
       [
         'admin/user/list',
@@ -14,33 +14,46 @@
       ],
       [
         '',
-        'title'=>'Edit'
+        'title'=>$title
       ]
     ]
   ])
+  @php
+      $name = !empty($data->name) ? $data->name : '';
+      $email = !empty($data->email) ? $data->email : '';
+      $photo = !empty($data->photo) ? $data->photo : '';
+  @endphp
   <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <div class="card card-secondary">
-            <form action="/admin/profile/edit" method="post" enctype="multipart/form-data">
+            <form action="/admin/{{$action}}" method="post" enctype="multipart/form-data">
               @csrf
+              @if (!empty($method))
+                  @method($method)
+              @endif
               <div class="card-header">
                 <h3 class="card-title">{{__($title.' User Data')}}</h3>
               </div>
               <div class="card-body">
                 @include('form.alert',['title'=>'error','type'=>'danger'])
                 @include('form.alert',['title'=>'success','type'=>'success'])
+                @if (!empty($role))
+                  <div class="form-group">
+                    @include('form.select',['name'=>'role','data'=>$role])
+                  </div>
+                @endif
                 <div class="form-group">
-                  @include('form.text',['name'=>'name','value'=>$user->name])
+                  @include('form.text',['name'=>'name','value'=>$name])
                 </div>
                 <div class="form-group">
-                  @include('form.text',['name'=>'email','type'=>'email','value'=>$user->email])
+                  @include('form.text',['name'=>'email','type'=>'email','value'=>$email])
                 </div>
                 <div class="form-group">
-                  @include('form.text',['name'=>'photo','value'=>$user->photo,'type'=>'file','accept'=>'.jpg,.jpeg,.png'])
-                  @if (!empty($user->photo))
-                    <img src="{{asset('storage/images/user/'.$user->photo)}}" class="img img-fluid" alt="" width="200">
+                  @include('form.text',['name'=>'photo','value'=>$photo,'type'=>'file','accept'=>'.jpg,.jpeg,.png'])
+                  @if (!empty($photo))
+                    <img src="{{asset('storage/images/user/'.$photo)}}" class="img img-fluid" alt="" width="200">
                   @endif
                 </div>
                 <div class="form-group">
