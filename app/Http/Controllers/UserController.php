@@ -66,7 +66,7 @@ class UserController extends Controller
     public function show($id)
     {
         $data = User::find($id);
-        return view('user.detail', ['data' => $data]);
+        return view('user.detail', ['data' => $data, 'role' => ['1' => 'root', '2' => 'admin', '3' => 'member']]);
     }
 
     /**
