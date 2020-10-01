@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -28,10 +29,11 @@ Route::middleware('auth')->group(function () {
             return view('page.index');
         });
 
-        Route::get('userjson', UserJsonController::class);
+        Route::get('userjson', UserJsonController::class)->middleware('role:1');
         Route::get('profile/edit', [UserController::class, 'EditProfile']);
         Route::put('profile/update', [UserController::class, 'UpdateProfile']);
         Route::resource('user', UserController::class)->middleware('role:1');
+        Route::resource('category', CategoryController::class);
         Route::resource('content', ContentController::class);
 
 

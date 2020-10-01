@@ -1,11 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="../../index3.html" class="brand-link elevation-4">
-    <img src="/AdminLte/dist/img/AdminLTELogo.png"
-          alt="AdminLTE Logo"
+  <a href="/admin" class="brand-link elevation-4">
+    <img src="{{asset('small-icon.png')}}"
+          alt="{{config('app.name')}} Logo"
           class="brand-image img-circle elevation-3"
           style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <span class="brand-text font-weight-light">{{config('app.name')}}</span>
   </a>
 
   <!-- Sidebar -->
@@ -19,47 +19,48 @@
         <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
     </div>
-
-    <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        @php
+            $role = Auth::user()->role;
+        @endphp
+        @foreach ($AdminMenu as $item => $value)
+          @if (in_array($role,$value['role']))
+            @php
+                $haschild = !empty($value['child']) ? true : false;
+            @endphp
+            <li class="nav-item @if($haschild){{'has-treeview'}}@endif">
+              <a href="{{$value['link']}}" class="nav-link">
+                <i class="nav-icon fas {{$value['icon']}}"></i>
+                <p>
+                  {{$value['title']}}
+                  @if ($haschild)
+                    <i class="fas fa-angle-left right"></i>
+                  @endif
+                </p>
+              </a>
+              @if ($haschild)
+                <ul class="nav nav-treeview">
+                  @foreach ($value['child'] as $citem => $cvalue)
+                    @if (in_array($role,$cvalue['role']))
+                      <li class="nav-item">
+                        <a href="{{$cvalue['link']}}" class="nav-link">
+                          <i class="far {{$cvalue['icon']}} nav-icon"></i>
+                          <p>{{$cvalue['title']}}</p>
+                        </a>
+                      </li>
+                    @endif
+                  @endforeach
+                </ul>
+              @endif
+            </li>      
+          @endif    
+        @endforeach
+        <li class="nav-item">
+          <a href="/admin" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../../index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v1</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../index2.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v2</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../index3.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v3</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="../widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -67,7 +68,7 @@
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-copy"></i>
             <p>
-              Layout Options
+              User
               <i class="fas fa-angle-left right"></i>
               <span class="badge badge-info right">6</span>
             </p>
@@ -76,13 +77,13 @@
             <li class="nav-item">
               <a href="../layout/top-nav.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
+                <p>User Add</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="../layout/top-nav-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
+                <p>User List</p>
               </a>
             </li>
             <li class="nav-item">
