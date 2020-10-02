@@ -48,7 +48,7 @@ class UserController extends Controller
         $this->validation($request);
 
         $user = new User();
-        $user = $this->UserSave($request, $user);
+        $user = $this->DataSave($request, $user);
 
         if ($user->save()) {
             return redirect('admin/user/create')->with('success', 'Data User Berhasil diSimpan');
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('user.edit', ['title' => 'edit', 'method' => 'put', 'action' => 'user/' . $id, 'data' => $user]);
+        return view('user.edit', ['title' => 'edit', 'method' => 'put', 'action' => 'user/' . $id, 'data' => $user, 'role' => ['1' => 'root', '2' => 'admin', '3' => 'member']]);
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
         $this->validation($request, $id);
 
         $user = User::find($id);
-        $user = $this->UserSave($request, $user);
+        $user = $this->DataSave($request, $user);
 
         if ($user->save()) {
             return redirect('admin/user/' . $id . '/edit')->with('success', 'Data User Berhasil diSimpan');
@@ -127,13 +127,13 @@ class UserController extends Controller
             'password_confirmation' => 'required'
         ]);
     }
-    private function UserSave(Request $request, $user)
+    private function DataSave(Request $request, $data)
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->password = Hash::make($request->password);
         if (!empty($request->role)) {
-            $user->role = $request->role;
+            $data->role = $request->role;
         }
         if (!empty($request->photo)) {
             $slug = Str::of($request->email)->slug('-');
@@ -141,20 +141,20 @@ class UserController extends Controller
                 if ($request->file('photo')->isValid()) {
                     $photo_title = $slug . '.' . $request->photo->extension();
                     $request->photo->storeAs('public/images/user', $photo_title);
-                    $user->photo = $photo_title;
+                    $data->photo = $photo_title;
                 }
             }
         }
-        return $user;
+        return $data;
     }
     public function UpdateProfile(Request $request)
     {
-        $user = Auth::user();
-        $id = $user->id;
+        $data = Auth::user();
+        $id = $data->id;
         $this->validation($request, $id);
-        $user = $this->UserSave($request, $user);
+        $data = $this->DataSave($request, $data);
 
-        if ($user->save()) {
+        if ($data->save()) {
             return redirect('admin/profile/edit')->with('success', 'Data User Berhasil diSimpan');
         } else {
             return redirect('admin/profile/edit')->with('error', 'Data User Gagal diSimpan');

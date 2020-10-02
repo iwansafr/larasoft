@@ -20,7 +20,7 @@ class CategoryController extends Controller
         foreach ($category as $key => $value) {
             $data[$value['id']] = $value['title'];
         }
-        return view('category.index', ['title' => 'Category', 'action' => 'category', 'parent' => $data]);
+        return view('category.index', ['title' => 'Category', 'action' => 'category', 'parent' => $data, 'data_parent' => $data]);
     }
 
     /**
@@ -30,7 +30,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.index', ['title' => 'Category']);
     }
 
     /**
@@ -43,7 +42,7 @@ class CategoryController extends Controller
     {
         $this->validation($request);
         $category = new Category();
-        $category = $this->CategorySave($request, $category);
+        $category = $this->DataSave($request, $category);
         if ($category->save()) {
             return redirect('admin/category')->with('success', 'Category Saved Successfully');
         } else {
@@ -70,9 +69,18 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cur = Category::find($id);
+        $category = Category::all();
+        $data = ['None'];
+        $data_parent = ['None'];
+        foreach ($category as $key => $value) {
+            if ($value['id'] != $id) {
+                $data[$value['id']] = $value['title'];
+            }
+            $data_parent[$value['id']] = $value['title'];
+        }
+        return view('category.index', ['title' => 'Category', 'method' => 'PUT', 'action' => 'category/' . $id, 'parent' => $data, 'data_parent' => $data_parent, 'data' => $cur]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -82,7 +90,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validation($request, $id);
+        $category = Category::find($id);
+        $category = $this->DataSave($request, $category);
+        if ($category->save()) {
+            return redirect('admin/category/' . $id . '/edit')->with('success', 'Category Updated Successfully');
+        } else {
+            return redirect('admin/category/' . $id . '/edit')->with('error', 'Category Failed to Update');
+        }
     }
 
     /**
@@ -93,7 +108,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if ($category->delete()) {
+            return redirect('admin/category/')->with('success', 'Data Category Berhasil dihapus');
+        } else {
+            return redirect('admin/category/')->with('error', 'Data Category Gagal dihapus');
+        }
     }
     private function validation(Request $request, $id = 0)
     {
@@ -102,15 +122,15 @@ class CategoryController extends Controller
             'slug' => 'unique:categories,slug,' . $id,
         ]);
     }
-    private function CategorySave(Request $request, $category)
+    private function DataSave(Request $request, $data)
     {
         $slug_request = !empty($request->slug) ? $request->slug : $request->title;
         $slug = Str::of($slug_request)->slug('-');
-        $category->title = $request->title;
-        $category->slug = $slug;
-        $category->parent = $request->parent;
+        $data->title = $request->title;
+        $data->slug = $slug;
+        $data->parent = $request->parent;
 
 
-        return $category;
+        return $data;
     }
 }

@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $role = [1, 2, 3];
+        $data_role = ['1' => 'Root', '2' => 'Admin', '3' => 'Member'];
         $AdminMenu =
             [
                 [
@@ -65,15 +66,10 @@ class AppServiceProvider extends ServiceProvider
                             'icon' => 'fa-circle',
                             'role' => $role,
                         ],
-                        [
-                            'title' => 'Add Category',
-                            'link' => '/admin/category/create',
-                            'icon' => 'fa-circle',
-                            'role' => $role,
-                        ]
                     ],
                 ]
             ];
         view()->share('AdminMenu', $AdminMenu);
+        view()->share('_data_role', json_encode($data_role));
     }
 }

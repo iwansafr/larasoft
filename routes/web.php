@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryJsonController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::get('userjson', UserJsonController::class)->middleware('role:1');
+        Route::get('categoryjson', CategoryJsonController::class);
         Route::get('profile/edit', [UserController::class, 'EditProfile']);
         Route::put('profile/update', [UserController::class, 'UpdateProfile']);
         Route::resource('user', UserController::class)->middleware('role:1');

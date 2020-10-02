@@ -2,7 +2,6 @@
 <html>
 <head>
   @include('part.meta')
-  @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <div class="wrapper">
@@ -36,5 +35,17 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/AdminLte/dist/js/demo.js"></script>
 @stack('scripts')
+<script>
+  function li_active(){
+		var current = $('a[href="'+location.pathname+'"]');
+    current.addClass('active');
+		if(current.closest('.has-treeview').length>0){
+      console.log(current.closest('.has-treeview'));
+      var li = current.closest('.has-treeview').addClass('menu-open');
+      li.children().addClass('active');
+		}
+	}
+  li_active();
+</script>
 </body>
 </html>

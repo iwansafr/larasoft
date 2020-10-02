@@ -38,6 +38,7 @@
                                         <th>Id</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Photo</th>
                                         <th>Action</th>
                                     </tr>
@@ -72,6 +73,7 @@
 @endif
 <script>
 $(function() {
+    role = JSON.parse('<?php echo $_data_role;?>');
     $('#contents-table').DataTable({
         processing: true,
         serverSide: true,
@@ -80,6 +82,18 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
+            {
+                data: 'role',
+                name: 'role',
+                render: function(data,type,full,meta){
+                    if(data != null){
+                        return role[data];
+                    }else{
+                        return ' ';
+                    }
+                },
+                orderable: false
+            },
             {
                 data: 'photo',
                 name: 'photo',

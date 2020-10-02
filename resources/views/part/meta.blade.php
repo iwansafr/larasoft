@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/AdminLte/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+@stack('styles')
 <!-- Theme style -->
 <link rel="stylesheet" href="/AdminLte/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
