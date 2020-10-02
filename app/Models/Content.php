@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category');
+    }
 }

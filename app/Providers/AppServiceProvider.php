@@ -55,14 +55,26 @@ class AppServiceProvider extends ServiceProvider
                     ],
                 ],
                 [
-                    'title' => 'Category',
+                    'title' => 'Content',
                     'link' => '#',
                     'icon' => 'fa-user',
                     'role' => $role,
                     'child' => [
                         [
-                            'title' => 'Category List',
+                            'title' => 'Category',
                             'link' => '/admin/category',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
+                        [
+                            'title' => 'Add Content',
+                            'link' => '/admin/content/create',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
+                        [
+                            'title' => 'Content List',
+                            'link' => '/admin/content',
                             'icon' => 'fa-circle',
                             'role' => $role,
                         ],
