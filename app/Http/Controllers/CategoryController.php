@@ -109,6 +109,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        if ($category->content()->count()) {
+            return redirect('admin/category/')->with('error', 'Cannot Delete Category, Content has Category record');
+        }
         if ($category->delete()) {
             return redirect('admin/category/')->with('success', 'Data Category Berhasil dihapus');
         } else {
