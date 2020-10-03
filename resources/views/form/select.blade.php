@@ -1,5 +1,18 @@
 @php
-  $selected = !empty($selected) ? $selected : 0;
+  if(!empty($selected))
+  {
+    if(is_object($selected)){
+      $selected_tmp = [];
+      foreach ($selected as $key)
+      {
+        $selected_tmp[$key->id] = $key->id;
+      }
+      $selected = $selected_tmp;
+    }
+  }else{
+    $selected = 0;
+  }
+  
   $multiple = !empty($multiple) ? $multiple : 0;
   $label = str_replace('_','',$name);
   $label = str_replace('[]','',$label);
@@ -11,9 +24,15 @@
       <option value="{{$item}}" @if($item==$selected){{'selected'}}@endif>{{$value}}</option>
     @endforeach
   @elseif(is_object($data))
-    @foreach ($data as $item)
-      <option value="{{$item->id}}" @if($item->id==$selected){{'selected'}}@endif>{{$item->title}}</option>
-    @endforeach
+    @if (is_array($selected))
+      @foreach ($data as $item)
+        <option value="{{$item->id}}" @if(in_array($item->id,$selected)){{'selected'}}@endif>{{$item->title}}</option>
+      @endforeach
+    @else
+      @foreach ($data as $item)
+        <option value="{{$item->id}}" @if($item->id==$selected){{'selected'}}@endif>{{$item->title}}</option>
+      @endforeach
+    @endif
   @endif
 
 </select>

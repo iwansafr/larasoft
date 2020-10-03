@@ -22,6 +22,7 @@
       $name = !empty($data->name) ? $data->name : '';
       $email = !empty($data->email) ? $data->email : '';
       $photo = !empty($data->photo) ? $data->photo : '';
+      $user_role = !empty($data->role) ? $data->role : '';
   @endphp
   <section class="content">
     <div class="container-fluid">
@@ -41,7 +42,7 @@
                 @include('form.alert',['title'=>'success','type'=>'success'])
                 @if (!empty($role))
                   <div class="form-group">
-                    @include('form.select',['name'=>'role','data'=>$role])
+                    @include('form.select',['name'=>'role','data'=>$role,'selected'=>$user_role])
                   </div>
                 @endif
                 <div class="form-group">

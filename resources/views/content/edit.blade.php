@@ -9,11 +9,11 @@
 @section('content')
   @include('form.header',
   [
-    'header'=>$title.' User',
+    'header'=>$title,
     'link'=>[
       [
-        'link'=>'/admin/user/',
-        'title'=>'User'
+        'link'=>'/admin/content/',
+        'title'=>'Content'
       ],
       [
         '',

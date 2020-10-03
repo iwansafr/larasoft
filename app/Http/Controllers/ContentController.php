@@ -17,7 +17,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        //
+        return view('content/index');
     }
 
     /**
@@ -71,7 +71,9 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $data = Content::find($id);
+        return view('content/edit', ['title' => 'Edit Content', 'action' => 'content/' . $id, 'method' => 'PUT', 'categories' => $categories, 'data' => $data, 'selected' => $data->categories]);
     }
 
     /**
