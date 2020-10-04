@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'title' => 'Content',
                     'link' => '#',
-                    'icon' => 'fa-user',
+                    'icon' => 'fa-edit',
                     'role' => $role,
                     'child' => [
                         [

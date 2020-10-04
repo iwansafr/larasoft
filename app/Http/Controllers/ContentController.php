@@ -85,6 +85,17 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validation($request, $id);
+        $content = Content::find($id);
+        $content = $this->DataSave($request, $content);
+        if ($content->save()) {
+            $category = new Category();
+            // $category->content()->detach($id);
+            $content->categories()->sync($request->categories);
+            return redirect('admin/content/' . $id . '/edit')->with('success', 'Content Updated Successfully');
+        } else {
+            return redirect('admin/content/' . $id . '/edit')->with('error', 'Update Content Failed');
+        }
         //
     }
 
@@ -102,6 +113,7 @@ class ContentController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255|unique:contents,title,' . $id,
+            'image' => 'required|max:1020|mimes:jpeg,png',
             'slug' => 'unique:contents,slug,' . $id,
             'categories' => 'required',
         ]);

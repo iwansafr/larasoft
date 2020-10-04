@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -112,6 +113,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($user->delete()) {
+            Storage::delete('public/images/user/' . $user->photo);
             return redirect('admin/user/')->with('success', 'Data User Berhasil dihapus');
         } else {
             return redirect('admin/user/')->with('error', 'Data User Gagal dihapus');
@@ -123,6 +125,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'photo' => 'required|max:1020|mimes:jpeg,png',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required'
         ]);
