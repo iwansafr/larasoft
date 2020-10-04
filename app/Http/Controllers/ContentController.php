@@ -61,7 +61,8 @@ class ContentController extends Controller
      */
     public function show($id)
     {
-        //
+        $content = Content::find($id);
+        return view('content.detail', ['data' => $content]);
     }
 
     /**
