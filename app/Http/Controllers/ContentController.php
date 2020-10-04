@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
 {
@@ -89,8 +90,6 @@ class ContentController extends Controller
         $content = Content::find($id);
         $content = $this->DataSave($request, $content);
         if ($content->save()) {
-            $category = new Category();
-            // $category->content()->detach($id);
             $content->categories()->sync($request->categories);
             return redirect('admin/content/' . $id . '/edit')->with('success', 'Content Updated Successfully');
         } else {
@@ -107,13 +106,20 @@ class ContentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $content = Content::find($id);
+        $content->categories()->detach();
+        if ($content->delete()) {
+            Storage::delete('public/images/content/' . $content->image);
+            return redirect('admin/content/')->with('success', 'Deleting Content Success');
+        } else {
+            return redirect('admin/content/')->with('error', 'Deleting Content Failed');
+        }
     }
     private function validation(Request $request, $id = 0)
     {
         $request->validate([
             'title' => 'required|string|max:255|unique:contents,title,' . $id,
-            'image' => 'required|max:1020|mimes:jpeg,png',
+            'image' => 'max:1020|mimes:jpeg,png',
             'slug' => 'unique:contents,slug,' . $id,
             'categories' => 'required',
         ]);
