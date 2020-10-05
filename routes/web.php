@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryJsonController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentJsonController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserJsonController;
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('user', UserController::class)->middleware('role:1');
         Route::resource('category', CategoryController::class);
         Route::resource('content', ContentController::class);
+        Route::resource('menu', MenuController::class);
+        Route::get('menujson', [MenuController::class, 'json']);
+        Route::get('menucustom/{numeric}', [MenuController::class, 'custom']);
 
 
         Route::get('/forbidden', function () {

@@ -1,10 +1,7 @@
 @extends('dashboard')
 
 @push('styles')
-    <link rel="stylesheet" href="/AdminLte/plugins/toastr/toastr.min.css">
-    <link rel="stylesheet" href="/AdminLte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="/AdminLte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
+@include('part.datatables_css')
 @endpush
 @section('content')
     @include('form.header',
@@ -54,16 +51,7 @@
 @endsection
 
 @push('scripts')
-<script src="/AdminLte/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="/AdminLte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="/AdminLte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="/AdminLte/plugins/toastr/toastr.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+@include('part.datatables_js')
 @if(session()->has('success'))
   <script>
     $(document).ready(function(){

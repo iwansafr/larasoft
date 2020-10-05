@@ -132,8 +132,6 @@ class CategoryController extends Controller
         $data->title = $request->title;
         $data->slug = $slug;
         $data->parent = $request->parent;
-
-
         return $data;
     }
 }

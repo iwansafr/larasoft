@@ -55,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
                     ],
                 ],
                 [
+                    'title' => 'CONTENT MANAGEMENT',
+                    'role' => $role,
+                    'header' => true
+                ],
+                [
                     'title' => 'Content',
                     'link' => '#',
                     'icon' => 'fa-edit',
@@ -79,7 +84,32 @@ class AppServiceProvider extends ServiceProvider
                             'role' => $role,
                         ],
                     ],
-                ]
+                ],
+                [
+                    'title' => 'Configuration',
+                    'header' => true,
+                    'role' => $role
+                ],
+                [
+                    'title' => 'Menu',
+                    'link' => '#',
+                    'icon' => 'fa-list',
+                    'role' => [1, 2],
+                    'child' => [
+                        [
+                            'title' => 'Menu List',
+                            'link' => '/admin/menu',
+                            'icon' => 'fa-circle',
+                            'role' => [1, 2],
+                        ],
+                        [
+                            'title' => 'Add Menu',
+                            'link' => '/admin/menu/create',
+                            'icon' => 'fa-circle',
+                            'role' => [1, 2],
+                        ]
+                    ],
+                ],
             ];
         view()->share('AdminMenu', $AdminMenu);
         view()->share('_data_role', json_encode($data_role));
