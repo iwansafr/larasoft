@@ -123,6 +123,22 @@ class MenuController extends Controller
     }
     public function custom($id)
     {
-        return view('menu.custom');
+        $data = Menu::find($id);
+        return view('menu.custom', ['data' => $data]);
+    }
+    public function from($id)
+    {
+        $data = Menu::find($id);
+        return response()->json($data->param);
+    }
+    public function updatemenu(Request $request)
+    {
+        $menu = Menu::find($request->id);
+        $menu->param = $request->param;
+        if ($menu->save()) {
+            return response()->json('success');
+        } else {
+            return response()->json('failed');
+        }
     }
 }

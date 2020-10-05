@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('menu', MenuController::class);
         Route::get('menujson', [MenuController::class, 'json']);
         Route::get('menucustom/{numeric}', [MenuController::class, 'custom']);
+        Route::get('menufrom/{numeric}', [MenuController::class, 'from']);
+        Route::put('updatemenu', [MenuController::class, 'updatemenu']);
 
 
         Route::get('/forbidden', function () {
