@@ -136,9 +136,9 @@ class MenuController extends Controller
         $menu = Menu::find($request->id);
         $menu->param = $request->param;
         if ($menu->save()) {
-            return response()->json('success');
+            return response()->json(['status' => 1, 'msg' => 'Menu Saved Successfully']);
         } else {
-            return response()->json('failed');
+            return response()->json(['status' => 0, 'msg' => 'Menu Saved Failed']);
         }
     }
 }

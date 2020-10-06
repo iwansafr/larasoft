@@ -126,5 +126,8 @@
         <a href="/logout" class="dropdown-item dropdown-footer"> <i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
     </li>
+    <li class="nav-item">
+      <a href="/home" target="_blank" class="nav-link" title="go to website"><i class="fa fa-globe"></i></a>
+    </li>
   </ul>
 </nav>
