@@ -31,7 +31,7 @@
               @if (!empty($method))
                   @method($method)
               @endif
-              <a href="/admin/category" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Category</a>
+              <a href="/admin/productcategory" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Category</a>
               <div class="card-header">
                 <h3 class="card-title">{{__('Category')}}</h3>
               </div>

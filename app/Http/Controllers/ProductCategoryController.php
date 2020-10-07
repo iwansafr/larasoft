@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -41,7 +42,14 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validation($request);
+        $category = new ProductCategory();
+        $category = $this->DataSave($request, $category);
+        if ($category->save()) {
+            return redirect('admin/productcategory')->with('success', 'Category Saved Successfully');
+        } else {
+            return redirect('admin/productcategory')->with('error', 'Category Failed to Save');
+        }
     }
 
     /**
@@ -63,7 +71,17 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cur = ProductCategory::find($id);
+        $category = ProductCategory::all();
+        $data = ['None'];
+        $data_parent = ['None'];
+        foreach ($category as $key => $value) {
+            if ($value['id'] != $id) {
+                $data[$value['id']] = $value['title'];
+            }
+            $data_parent[$value['id']] = $value['title'];
+        }
+        return view('admin.product.category.index', ['title' => 'Category', 'method' => 'PUT', 'action' => 'productcategory/' . $id, 'parent' => $data, 'data_parent' => $data_parent, 'data' => $cur]);
     }
 
     /**
@@ -93,5 +111,21 @@ class ProductCategoryController extends Controller
         $data_category = ProductCategory::all();
         $table = DataTables::of($data_category);
         return $table->make(true);
+    }
+    private function validation(Request $request, $id = 0)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255|unique:categories,title,' . $id,
+            'slug' => 'unique:categories,slug,' . $id,
+        ]);
+    }
+    private function DataSave(Request $request, $data)
+    {
+        $slug_request = !empty($request->slug) ? $request->slug : $request->title;
+        $slug = Str::of($slug_request)->slug('-');
+        $data->title = $request->title;
+        $data->slug = $slug;
+        $data->parent = $request->parent;
+        return $data;
     }
 }
