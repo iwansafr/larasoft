@@ -93,7 +93,14 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validation($request, $id);
+        $category = ProductCategory::find($id);
+        $category = $this->DataSave($request, $category);
+        if ($category->save()) {
+            return redirect('admin/productcategory/' . $id . '/edit')->with('success', 'Category Updated Successfully');
+        } else {
+            return redirect('admin/productcategory/' . $id . '/edit')->with('error', 'Category Failed to Update');
+        }
     }
 
     /**
@@ -104,7 +111,15 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ProductCategory::find($id);
+        if ($category->products()->count()) {
+            return redirect('admin/productcategory/')->with('error', 'Cannot Delete Category, Content has Category record');
+        }
+        if ($category->delete()) {
+            return redirect('admin/productcategory/')->with('success', 'Data Category Berhasil dihapus');
+        } else {
+            return redirect('admin/productcategory/')->with('error', 'Data Category Gagal dihapus');
+        }
     }
     public function json()
     {
