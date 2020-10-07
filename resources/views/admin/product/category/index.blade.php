@@ -96,7 +96,7 @@
     $('#contents-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '/admin/categoryjson',
+        ajax: '/admin/productcategory/json',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'parent', name: 'parent',
@@ -110,7 +110,7 @@
                 data: 'id',
                 name: 'action',
                 render: function(data,type,full,meta){
-                   return '<div class="form-inline"><a href="/admin/category/'+data+'/edit/" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Edit</a> | <form action="/admin/category/'+data+'" method="post"> @csrf @method("DELETE") <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button></form></div>';
+                   return '<div class="form-inline"><a href="/admin/productcategory/'+data+'/edit/" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Edit</a> | <form action="/admin/productcategory/'+data+'" method="post"> @csrf @method("DELETE") <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button></form></div>';
                 },
                 orderable: false
             }

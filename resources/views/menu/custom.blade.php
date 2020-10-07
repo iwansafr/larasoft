@@ -6,6 +6,7 @@
       .list-group-item{
         margin-bottom: 5px;
         border-top-width: thin!important;
+        cursor: pointer;
       }
     </style>
 @endpush

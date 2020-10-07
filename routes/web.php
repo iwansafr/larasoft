@@ -4,8 +4,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryJsonController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentJsonController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserJsonController;
@@ -39,6 +42,9 @@ Route::middleware('auth')->group(function () {
         Route::put('profile/update', [UserController::class, 'UpdateProfile']);
         Route::resource('user', UserController::class)->middleware('role:1');
         Route::resource('category', CategoryController::class);
+        Route::get('productcategory/json', [ProductCategoryController::class, 'json']);
+        Route::resource('productcategory', ProductCategoryController::class);
+        Route::resource('product', ProductController::class);
         Route::resource('content', ContentController::class);
         Route::resource('menu', MenuController::class);
         Route::get('menujson', [MenuController::class, 'json']);
@@ -52,6 +58,8 @@ Route::middleware('auth')->group(function () {
         })->name('forbidden');
     });
 });
+
+Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('register', [RegisterController::class, 'register']);
 Route::post('register', [RegisterController::class, 'store']);

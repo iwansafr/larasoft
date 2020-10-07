@@ -86,6 +86,32 @@ class AppServiceProvider extends ServiceProvider
                     ],
                 ],
                 [
+                    'title' => 'Product',
+                    'link' => '#',
+                    'icon' => 'fa-shopping-bag',
+                    'role' => $role,
+                    'child' => [
+                        [
+                            'title' => 'Category',
+                            'link' => '/admin/productcategory',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
+                        [
+                            'title' => 'Add Product',
+                            'link' => '/admin/product/create',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
+                        [
+                            'title' => 'Product List',
+                            'link' => '/admin/product',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
+                    ],
+                ],
+                [
                     'title' => 'Configuration',
                     'header' => true,
                     'role' => $role
@@ -97,17 +123,11 @@ class AppServiceProvider extends ServiceProvider
                     'role' => [1, 2],
                     'child' => [
                         [
-                            'title' => 'Menu List',
+                            'title' => 'Menu Management',
                             'link' => '/admin/menu',
                             'icon' => 'fa-circle',
                             'role' => [1, 2],
                         ],
-                        [
-                            'title' => 'Add Menu',
-                            'link' => '/admin/menu/create',
-                            'icon' => 'fa-circle',
-                            'role' => [1, 2],
-                        ]
                     ],
                 ],
             ];
