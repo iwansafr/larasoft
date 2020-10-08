@@ -120,6 +120,9 @@ p {
                 <div class="form-group">
                   @include('form.textarea',['name'=>'description','value'=>$description])
                 </div>
+                <div class="form-group">
+                  @include('form.checkbox',['name'=>'publish','value'=>1])
+                </div>
                 
               </div>
               <div class="card-footer">
