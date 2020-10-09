@@ -120,14 +120,15 @@
         <div class="dropdown-divider"></div>
         <a href="/admin/profile/edit" class="dropdown-item">
           <i class="fas fa-edit mr-2"></i> Edit Profil
-          <span class="float-right text-muted text-sm">3 mins</span>
+          <span class="float-right text-muted text-sm">-</span>
+        </a>
+        <a href="/home" target="_blank" class="dropdown-item">
+          <i class="fas fa-globe mr-2"></i> Go To Home Website
+          <span class="float-right text-muted text-sm">-</span>
         </a>
         <div class="dropdown-divider"></div>
         <a href="/logout" class="dropdown-item dropdown-footer"> <i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
-    </li>
-    <li class="nav-item">
-      <a href="/home" target="_blank" class="nav-link" title="go to website"><i class="fa fa-globe"></i></a>
     </li>
   </ul>
 </nav>

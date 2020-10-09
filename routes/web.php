@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('user', UserController::class)->middleware('role:1');
         Route::resource('category', CategoryController::class);
         Route::get('productcategory/json', [ProductCategoryController::class, 'json']);
+        Route::get('product/json', [ProductController::class, 'json']);
         Route::resource('productcategory', ProductCategoryController::class);
         Route::resource('product', ProductController::class);
         Route::resource('content', ContentController::class);

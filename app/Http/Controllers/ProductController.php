@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/product/index');
     }
 
     /**
@@ -71,7 +72,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = ProductCategory::all();
+        $data = Product::find($id);
+        return view('admin/product/edit', ['title' => 'Edit Product', 'action' => 'product/' . $id, 'method' => 'PUT', 'categories' => $categories, 'data' => $data, 'selected' => $data->categories]);
     }
 
     /**
@@ -136,5 +139,10 @@ class ProductController extends Controller
             $data->image = '';
         }
         return $data;
+    }
+    public function json()
+    {
+        $table = DataTables::of(Product::all());
+        return $table->make(true);
     }
 }
