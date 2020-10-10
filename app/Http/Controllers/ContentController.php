@@ -147,6 +147,10 @@ class ContentController extends Controller
                     $data->image = $image_title;
                 }
             }
+        } else {
+            if (empty($data->id)) {
+                $data->image = '';
+            }
         }
         return $data;
     }

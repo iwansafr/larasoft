@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
@@ -61,7 +62,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.product.detail', ['data' => $product]);
     }
 
     /**
@@ -86,7 +88,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validation($request, $id);
+        $product = Product::find($id);
+        $product = $this->DataSave($request, $product);
+        if ($product->save()) {
+            $product->categories()->sync($request->categories);
+            return redirect('admin/product/' . $id . '/edit')->with('success', 'Product Updated Successfully');
+        } else {
+            return redirect('admin/product/' . $id . '/edit')->with('error', 'Product Updated Failed');
+        }
     }
 
     /**
@@ -97,7 +107,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->categories()->detach();
+        if ($product->delete()) {
+            Storage::delete('public/images/product/' . $product->image);
+            return redirect('admin/product/')->with('success', 'Deleting Product Success');
+        } else {
+            return redirect('admin/product/')->with('error', 'Deleting Product Failed');
+        }
     }
     private function validation(Request $request, $id = 0)
     {
@@ -127,7 +144,6 @@ class ProductController extends Controller
         $data->user_id = Auth::user()->id;
         $data->slug = $slug;
         if (!empty($request->image)) {
-            dd($request->image);
             if ($request->hasFile('image')) {
                 if ($request->file('image')->isValid()) {
                     $image_title = $slug . '.' . $request->image->extension();
@@ -136,7 +152,9 @@ class ProductController extends Controller
                 }
             }
         } else {
-            $data->image = '';
+            if (empty($data->id)) {
+                $data->image = '';
+            }
         }
         return $data;
     }

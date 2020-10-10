@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="/admin/content/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Content</a>
+                            <a href="/admin/product/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Product</a>
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">

@@ -70,7 +70,7 @@ $(function() {
                 data: 'image',
                 name: 'image',
                 render: function(data,type,full,meta){
-                    if(data != null){
+                    if(data !== ''){
                         return '<img src="{{asset("storage/images/content/")}}/'+data+'" border="0" width="40" class="img-rounded" align="center" />';
                     }else{
                         return ' ';
@@ -82,7 +82,7 @@ $(function() {
                 data: 'id',
                 name: 'action',
                 render: function(data,type,full,meta){
-                    return '<div class="form-inline"><a href="/admin/content/'+data+'/edit/" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Edit</a> | <a href="/admin/content/'+data+'" class="btn btn-sm btn-warning"><i class="fa fa-search"></i> Detail</a> | <form action="/admin/content/'+data+'" method="post"> @csrf @method("DELETE") <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button></form></div>';
+                    return '<div class="form-inline"><a href="/admin/content/'+data+'/edit/" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> | <a href="/admin/content/'+data+'" class="btn btn-sm btn-warning"><i class="fa fa-search"></i></a> | <form action="/admin/content/'+data+'" method="post"> @csrf @method("DELETE") <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></form></div>';
                 },
                 orderable: false
             }
