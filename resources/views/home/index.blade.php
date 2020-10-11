@@ -6,7 +6,8 @@
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
   @include('home.part.navbar')
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="background: white;">
+    @include('home.part.slider')
     @include('home.part.header')
     <div class="content">
       <div class="container">

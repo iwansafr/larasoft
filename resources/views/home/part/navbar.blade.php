@@ -1,4 +1,4 @@
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+  <nav class="main-header navbar navbar-expand-md navbar-dark navbar-cyan">
     <div class="container">
       <a href="/" class="navbar-brand">
         <img src="/AdminLte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"

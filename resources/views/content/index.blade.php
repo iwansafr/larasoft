@@ -87,12 +87,12 @@ $(function() {
                 orderable: false
             }
         ],
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
+        // dom: 'Bfrtip',
+        // buttons: [
+        //     'copyHtml5',
+        //     'csvHtml5',
+        //     'pdfHtml5'
+        // ]
     });
 });
 </script>

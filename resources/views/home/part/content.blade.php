@@ -1,53 +1,55 @@
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's
-        content.
-      </p>
-
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+<div class="col-md-3">
+  <div class="card-body">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdmywpkNUAK7UBimQEI4z2tQcqOFPjwaSfWZp5CXykEJ75L16Bjr5N7JPk1g&usqp=CAc" class="w-100 img img-fluid" alt="">
+    <p class="text-center">
+      Unicorn Baby Shower Invitation 3 - FREE thank you card
+      <br>
+      <b>$10.000</b>
+    </p>
+    
   </div>
-
-  <div class="card card-primary card-outline">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's
-        content.
-      </p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-  </div><!-- /.card -->
 </div>
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-header">
-      <h5 class="card-title m-0">Featured</h5>
-    </div>
-    <div class="card-body">
-      <h6 class="card-title">Special title treatment</h6>
-
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+<div class="col-md-3">
+  <div class="card-body">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdmywpkNUAK7UBimQEI4z2tQcqOFPjwaSfWZp5CXykEJ75L16Bjr5N7JPk1g&usqp=CAc" class="w-100 img img-fluid" alt="">
+    <p class="text-center">
+      Unicorn Baby Shower Invitation 3 - FREE thank you card
+      <br>
+      <b>$10.000</b>
+    </p>
+    
   </div>
-
-  <div class="card card-primary card-outline">
-    <div class="card-header">
-      <h5 class="card-title m-0">Featured</h5>
-    </div>
-    <div class="card-body">
-      <h6 class="card-title">Special title treatment</h6>
-
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+</div>
+<div class="col-md-3">
+  <div class="card-body">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdmywpkNUAK7UBimQEI4z2tQcqOFPjwaSfWZp5CXykEJ75L16Bjr5N7JPk1g&usqp=CAc" class="w-100 img img-fluid" alt="">
+    <p class="text-center">
+      Unicorn Baby Shower Invitation 3 - FREE thank you card
+      <br>
+      <b>$10.000</b>
+    </p>
+    
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="card-body">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdmywpkNUAK7UBimQEI4z2tQcqOFPjwaSfWZp5CXykEJ75L16Bjr5N7JPk1g&usqp=CAc" class="w-100 img img-fluid" alt="">
+    <p class="text-center">
+      Unicorn Baby Shower Invitation 3 - FREE thank you card
+      <br>
+      <b>$10.000</b>
+    </p>
+    
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="card-body">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdmywpkNUAK7UBimQEI4z2tQcqOFPjwaSfWZp5CXykEJ75L16Bjr5N7JPk1g&usqp=CAc" class="w-100 img img-fluid" alt="">
+    <p class="text-center">
+      Unicorn Baby Shower Invitation 3 - FREE thank you card
+      <br>
+      <b>$10.000</b>
+    </p>
+    
   </div>
 </div>
