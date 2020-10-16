@@ -10,7 +10,7 @@ class ContentJsonController extends Controller
 {
     public function __invoke()
     {
-        $table = DataTables::of(Content::all());
+        $table = DataTables::of(Content::latest());
         return $table->make(true);
     }
 }
