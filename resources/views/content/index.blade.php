@@ -71,7 +71,20 @@ $(function() {
                 name: 'image',
                 render: function(data,type,full,meta){
                     if(data !== ''){
-                        return '<img src="{{asset("storage/images/content/")}}/'+data+'" border="0" width="40" class="img-rounded" align="center" />';
+                        return `<a href="#" data-toggle="modal" data-target="#modal-img-${data.replace('.','-')}"><img src="{{asset("storage/images/content/")}}/${data}" border="0" width="40" class="img-rounded" align="center" /></a>
+                        <div class="modal fade" id="modal-img-${data.replace('.','-')}">
+                            <div class="modal-dialog modal-img-${data}">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <img src="{{asset("storage/images/content/")}}/${data}" border="0" class="img-fluid img-rounded" align="center" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
                     }else{
                         return ' ';
                     }
