@@ -29,10 +29,10 @@
                         <div class="card-body">
                             @include('form.alert',['title'=>'error','type'=>'danger'])
                             @include('form.alert',['title'=>'success','type'=>'success'])
-                            <table class="table table-bordered" id="contents-table">
+                            <table class="table table-bordered dt-responsive nowrap" id="contents-table" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        {{-- <th>Id</th> --}}
                                         <th>Title</th>
                                         <th>Image</th>
                                         <th>Action</th>
@@ -64,7 +64,7 @@ $(function() {
         serverSide: true,
         ajax: '/admin/contentjson',
         columns: [
-            { data: 'id', name: 'id' },
+            // { data: 'id', name: 'id' },
             { data: 'title', name: 'title' },
             {
                 data: 'image',
