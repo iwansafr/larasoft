@@ -130,6 +130,20 @@ class AppServiceProvider extends ServiceProvider
                         ],
                     ],
                 ],
+                [
+                    'title' => 'Appearance',
+                    'link' => '#',
+                    'icon' => 'fa-paint-roller',
+                    'role' => [1, 2],
+                    'child' => [
+                        [
+                            'title' => 'Home Page',
+                            'link' => '/admin/config/homepage',
+                            'icon' => 'fa-circle',
+                            'role' => [1, 2],
+                        ],
+                    ],
+                ],
             ];
         view()->share('AdminMenu', $AdminMenu);
         view()->share('_data_role', json_encode($data_role));

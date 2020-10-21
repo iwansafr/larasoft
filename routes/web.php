@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryJsonController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentJsonController;
 use App\Http\Controllers\HomeController;
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::get('menufrom/{numeric}', [MenuController::class, 'from']);
         Route::put('updatemenu', [MenuController::class, 'updatemenu']);
 
+        Route::get('config/homepage', [ConfigController::class, 'homepage']);
+        Route::post('config/homepage', [ConfigController::class, 'homepagesave']);
 
         Route::get('/forbidden', function () {
             return view('page.forbidden', ['status' => 'danger', 'title' => '404', 'msg' => 'You Dont Have Permission to Access This Page']);
