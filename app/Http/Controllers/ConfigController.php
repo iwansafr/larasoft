@@ -10,7 +10,12 @@ class ConfigController extends Controller
     public function homepage()
     {
         $data = Config::where('name', 'homepage')->first();
-        $params = json_decode($data->params, 1);
+        if(!empty($data->params))
+        {
+            $params = json_decode($data->params, 1);
+        }else{            
+            $params = [];
+        }
         return view('config.homepage', ['data' => $params]);
     }
     public function homepagesave(Request $request)
