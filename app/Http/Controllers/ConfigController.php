@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Config;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
@@ -18,24 +18,24 @@ class ConfigController extends Controller
             $params = [];
         }
         $category = Category::all();
-        return view('config.homepage', ['data' => $params, 'category' => $category]);
+        $productCategory = ProductCategory::all();
+        return view('config.homepage', ['data' => $params, 'category' => $category, 'productCategory' => $productCategory]);
     }
     public function homepagesave(Request $request)
     {
         $data = Config::where('name', 'homepage')->first();
         if (empty($data)) {
             $data = new Config();
+        } else {
+            $data_param = json_decode($data->params, 1);
         }
-        $slug_request = !empty($request->slug) ? $request->slug : $request->title;
-        $slug = Str::of($slug_request)->slug('-');
         $data->name = 'homepage';
         $params = [];
-        $params['title'] = $request->title;
         $params['site_title'] = $request->site_title;
         $params['site_description'] = $request->site_description;
         $params['content_slider'] = $request->content_slider;
         $params['product_top'] = $request->product_top;
-
+        // dd($data);
         if (!empty($request->logo_image)) {
             if ($request->hasFile('logo_image')) {
                 if ($request->file('logo_image')->isValid()) {
@@ -45,8 +45,8 @@ class ConfigController extends Controller
                 }
             }
         } else {
-            if (empty($data->id)) {
-                $params['logo_image'] = '';
+            if (!empty($data_param['logo_image'])) {
+                $params['logo_image'] = $data_param['logo_image'];
             }
         }
         if (!empty($request->site_icon)) {
@@ -58,8 +58,8 @@ class ConfigController extends Controller
                 }
             }
         } else {
-            if (empty($data->id)) {
-                $params['site_icon'] = '';
+            if (!empty($data_param['site_icon'])) {
+                $params['site_icon'] = $data_param['site_icon'];
             }
         }
         $data->params = json_encode($params);

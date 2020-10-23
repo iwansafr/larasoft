@@ -2,7 +2,6 @@
 @section('content')
 <?php 
 $header = ['header'=>'Config Home Page','link'=>[['link'=>'','title'=>'Home Page']]];
-$title = !empty($data['title']) ? $data['title'] : '';
 ?>
 @include('form.header',$header)
 
@@ -76,21 +75,7 @@ $title = !empty($data['title']) ? $data['title'] : '';
             </div>
             <div class="card-body">
               <div class="form-group">
-                @include('form.select',['name'=>'product_top','data'=>$category,'selected'=>@$data['product_top']])
-              </div>
-            </div>
-          </div>
-          <div class="card card-secondary">
-            <div class="card-header">
-              home page
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-3">
-                </div>
-              </div>
-              <div class="form-group">
-                @include('form.text',['name'=>'title','value'=>$title])
+                @include('form.select',['name'=>'product_top','data'=>$productCategory,'selected'=>@$data['product_top']])
               </div>
             </div>
           </div>
