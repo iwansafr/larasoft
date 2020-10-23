@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductExport;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
@@ -162,5 +164,9 @@ class ProductController extends Controller
     {
         $table = DataTables::of(Product::all());
         return $table->make(true);
+    }
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'product.xlsx');
     }
 }
