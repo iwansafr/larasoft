@@ -14,7 +14,7 @@
   }
   
   $multiple = !empty($multiple) ? $multiple : 0;
-  $label = str_replace('_','',$name);
+  $label = str_replace('_',' ',$name);
   $label = str_replace('[]','',$label);
 @endphp
 <label>{{$label}}</label>
