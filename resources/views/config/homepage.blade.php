@@ -74,8 +74,14 @@ $header = ['header'=>'Config Home Page','link'=>[['link'=>'','title'=>'Home Page
               </div>
             </div>
             <div class="card-body">
+              @php
+                  $additional_options = ['0'=>'Latest','-1'=>'Most Popular'];
+              @endphp
               <div class="form-group">
-                @include('form.select',['name'=>'product_top','data'=>$productCategory,'selected'=>@$data['product_top']])
+                @include('form.select',['name'=>'product_slide','data'=>$productCategory,'additional_options'=>$additional_options,'selected'=>@$data['product_slide']])
+              </div>
+              <div class="form-group">
+                @include('form.select',['name'=>'product_top','data'=>$productCategory,'additional_options'=>$additional_options,'selected'=>@$data['product_top']])
               </div>
             </div>
           </div>

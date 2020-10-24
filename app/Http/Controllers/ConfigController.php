@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Config;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use stdClass;
 
 class ConfigController extends Controller
 {
@@ -34,6 +35,7 @@ class ConfigController extends Controller
         $params['site_title'] = $request->site_title;
         $params['site_description'] = $request->site_description;
         $params['content_slider'] = $request->content_slider;
+        $params['product_slide'] = $request->product_slide;
         $params['product_top'] = $request->product_top;
         // dd($data);
         if (!empty($request->logo_image)) {

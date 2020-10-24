@@ -7,6 +7,7 @@ use App\Models\Config;
 use App\Models\Content;
 use App\Models\Menu;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,7 @@ class HomeController extends Controller
                     $query->where('id', '=', $product_top_id);
                 })->get();
                 $data['product_top'] = $product_top;
+                $data['product_top_category'] = ProductCategory::find($product_top_id);
             }
         }
         $data['menu'] = $output_menu;

@@ -34,6 +34,10 @@
       @endforeach
     @endif
   @endif
-
+  @if (!empty($additional_options))
+    @foreach ($additional_options as $item => $value)
+      <option value="{{$item}}" @if($item==$selected){{'selected'}}@endif>{{$value}}</option>
+    @endforeach
+  @endif
 </select>
 @include('form.feedback',['name'=>$name])
