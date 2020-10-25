@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::put('updatemenu', [MenuController::class, 'updatemenu']);
 
         Route::get('config/homepage', [ConfigController::class, 'homepage']);
-        Route::post('config/homepage', [ConfigController::class, 'homepagesave']);
+        Route::post('config/homepagesave', [ConfigController::class, 'homepagesave']);
 
         Route::get('/forbidden', function () {
             return view('page.forbidden', ['status' => 'danger', 'title' => '404', 'msg' => 'You Dont Have Permission to Access This Page']);
