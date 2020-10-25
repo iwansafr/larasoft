@@ -45,7 +45,7 @@
                     <p class="text-center">
                       {{$product->title}}
                       <br>
-                      <b>${{number_format($product->price,'2','.','')}}</b>
+                      <b>${{number_format($product->price,'0',',','.')}}</b>
                     </p>
                   </div>
                 </div>
