@@ -11,7 +11,7 @@ $header = ['header'=>'Config Home Page','link'=>[['link'=>'','title'=>'Home Page
       <div class="col-md-12">
         @include('form.alert',['title'=>'error','type'=>'danger'])
         @include('form.alert',['title'=>'success','type'=>'success'])
-        <form action="/admin/config/homepagesave/" method="POST" enctype="multipart/form-data">
+        <form action="/admin/config/homepage" method="POST" enctype="multipart/form-data">
           @method('POST')
           @csrf
           <div class="form-group">
