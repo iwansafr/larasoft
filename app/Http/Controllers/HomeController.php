@@ -29,6 +29,7 @@ class HomeController extends Controller
             $home_config = json_decode($config_home->params);
             $slider_id = $home_config->content_slider;
             $product_top_id = $home_config->product_top;
+            $product_slide_id = $home_config->product_slide;
 
             if (!empty($slider_id)) {
                 $slider_content = Content::whereHas('categories', function (Builder $query) use ($slider_id) {
@@ -42,6 +43,14 @@ class HomeController extends Controller
                 })->get();
                 $data['product_top'] = $product_top;
                 $data['product_top_category'] = ProductCategory::find($product_top_id);
+            }
+
+            if (!empty($product_slide_id)) {
+                $product_slide = Product::whereHas('categories', function (Builder $query) use ($product_slide_id) {
+                    $query->where('id', '=', $product_slide_id);
+                })->get();
+                $data['product_slide'] = $product_slide;
+                $data['product_slide_category'] = ProductCategory::find($product_slide_id);
             }
         }
         $data['menu'] = $output_menu;
