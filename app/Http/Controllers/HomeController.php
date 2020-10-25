@@ -54,6 +54,7 @@ class HomeController extends Controller
             }
         }
         $data['menu'] = $output_menu;
+        $data['config'] = $home_config;
         return $data;
     }
 }

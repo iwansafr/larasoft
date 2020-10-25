@@ -8,7 +8,7 @@
   @include('home.part.navbar')
   <div class="content-wrapper" style="background: white;">
     @include('home.part.slider')
-    @include('home.part.header')
+    {{-- @include('home.part.header') --}}
     <div class="content">
       <div class="container">
         <div class="row">
