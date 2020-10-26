@@ -14,9 +14,9 @@
             </div>
             <div class="col-12 product-image-thumbs">
               <div class="product-image-thumb active"><img src="{{$image}}" alt="Product Image"></div>
+              {{-- <div class="product-image-thumb" ><img src="{{$image}}" alt="Product Image"></div>
               <div class="product-image-thumb" ><img src="{{$image}}" alt="Product Image"></div>
-              <div class="product-image-thumb" ><img src="{{$image}}" alt="Product Image"></div>
-              <div class="product-image-thumb" ><img src="{{$image}}" alt="Product Image"></div>
+              <div class="product-image-thumb" ><img src="{{$image}}" alt="Product Image"></div> --}}
             </div>
           </div>
           <div class="col-12 col-sm-6">
@@ -26,90 +26,35 @@
 
             <hr>
             <h4>Available Colors</h4>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-default text-center active">
-                <input type="radio" name="color_option" id="color_option1" autocomplete="off" checked="">
-                Green
-                <br>
-                <i class="fas fa-circle fa-2x text-green"></i>
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option2" autocomplete="off">
-                Blue
-                <br>
-                <i class="fas fa-circle fa-2x text-blue"></i>
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option3" autocomplete="off">
-                Purple
-                <br>
-                <i class="fas fa-circle fa-2x text-purple"></i>
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option4" autocomplete="off">
-                Red
-                <br>
-                <i class="fas fa-circle fa-2x text-red"></i>
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option5" autocomplete="off">
-                Orange
-                <br>
-                <i class="fas fa-circle fa-2x text-orange"></i>
-              </label>
-            </div>
+            
 
             <h4 class="mt-3">Size <small>Please select one</small></h4>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option1" autocomplete="off">
-                <span class="text-xl">S</span>
-                <br>
-                Small
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option1" autocomplete="off">
-                <span class="text-xl">M</span>
-                <br>
-                Medium
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option1" autocomplete="off">
-                <span class="text-xl">L</span>
-                <br>
-                Large
-              </label>
-              <label class="btn btn-default text-center">
-                <input type="radio" name="color_option" id="color_option1" autocomplete="off">
-                <span class="text-xl">XL</span>
-                <br>
-                Xtra-Large
-              </label>
-            </div>
+            
 
             <div class="bg-gray py-2 px-3 mt-4">
               <h2 class="mb-0">
                 ${{number_format($data['product']->price,'0',',','.')}}
               </h2>
               <h4 class="mt-0">
-                <small>Ex Tax: $80.00 </small>
+                <small>Ex Tax: - </small>
               </h4>
             </div>
 
             <div class="mt-4">
-              <div class="btn btn-primary btn-lg btn-flat">
+              <div class="btn btn-secondary btn-lg btn-flat">
                 <i class="fas fa-cart-plus fa-lg mr-2"></i> 
                 Add to Cart
               </div>
 
               <div class="btn btn-default btn-lg btn-flat">
-                <i class="fas fa-heart fa-lg mr-2"></i> 
-                Add to Wishlist
+                Buy It Now
               </div>
             </div>
 
             <div class="mt-4 product-share">
-              <a href="#" class="text-gray">
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v6.0"></script>
+        			{{-- <div class="fb-share-button" data-href="<?php echo base_url($this->uri->uri_string) ?>" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div> --}}
+              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url('/product/'.$data['product']->slug.'.'.$data['product']->id)}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore" class="text-gray">
                 <i class="fab fa-facebook-square fa-2x"></i>
               </a>
               <a href="#" class="text-gray">
@@ -117,9 +62,6 @@
               </a>
               <a href="#" class="text-gray">
                 <i class="fas fa-envelope-square fa-2x"></i>
-              </a>
-              <a href="#" class="text-gray">
-                <i class="fas fa-rss-square fa-2x"></i>
               </a>
             </div>
 
