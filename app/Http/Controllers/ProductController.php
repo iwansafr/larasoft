@@ -169,4 +169,21 @@ class ProductController extends Controller
     {
         return Excel::download(new ProductExport, 'product.xlsx');
     }
+    public function product_detail($slug)
+    {
+        if (!empty($slug)) {
+            $id = explode('.', $slug);
+            if (!empty($id)) {
+                $id = end($id);
+                $product = Product::find($id);
+                if (!empty($product)) {
+                    $home = new HomeController();
+                    $data = $home->block();
+                    $data['product'] = $product;
+                    return view('home/product/detail', ['data' => $data]);
+                } else {
+                }
+            }
+        }
+    }
 }

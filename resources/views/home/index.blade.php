@@ -12,7 +12,8 @@
     <div class="content">
       <div class="container">
         <div class="row">
-          @include('home.part.content')
+          {{-- @include('home.part.content') --}}
+          @yield('content')
         </div>
       </div>
     </div>

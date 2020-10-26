@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
-
+Route::get('/product/{any}', [ProductController::class, 'product_detail']);
 Route::get('register', [RegisterController::class, 'register']);
 Route::post('register', [RegisterController::class, 'store']);
 

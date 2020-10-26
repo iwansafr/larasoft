@@ -15,9 +15,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home/index', ['data' => $this->block()]);
+        return view('home/part/content', ['data' => $this->block()]);
     }
-    private function block()
+    public function block()
     {
         $menu = Menu::all();
         $config_home = Config::where('name', 'homepage')->first();
