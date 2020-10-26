@@ -39,7 +39,7 @@
           <div class="carousel-item @if($loop->iteration == 1) active @endif">
             <div class="row">
               @foreach ($item as $product)
-                <div class="col-md-3">
+                <div class="col-3">
                   <div class="card-body">
                     <img src="{{asset('storage/images/product/'.$product->image)}}" class="w-100 img img-fluid" alt="">
                     <p class="text-center">
