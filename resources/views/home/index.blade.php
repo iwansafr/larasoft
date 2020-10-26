@@ -7,7 +7,7 @@
 <div class="wrapper">
   @include('home.part.navbar')
   <div class="content-wrapper" style="background: white;">
-    @include('home.part.slider')
+    {{-- @include('home.part.slider') --}}
     {{-- @include('home.part.header') --}}
     <div class="content">
       <div class="container">
