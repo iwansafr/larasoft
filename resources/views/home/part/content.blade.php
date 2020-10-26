@@ -54,12 +54,12 @@
           </div>
         @endforeach
       </div>
-      <a class="carousel-control-prev" href="#carouselProductSlide" role="button" data-slide="prev" style="left: -100px;">
+      <a class="carousel-control-prev" href="#carouselProductSlide" role="button" data-slide="prev" style="left: -5%;">
         <i class="fa fa-arrow-alt-circle-left" style="color: black;font-size: 24px;"></i>
         {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselProductSlide" role="button" data-slide="next" style="right: -100px;">
+      <a class="carousel-control-next" href="#carouselProductSlide" role="button" data-slide="next" style="right: -5%;">
         <i class="fa fa-arrow-alt-circle-right" style="color: black;font-size: 24px;"></i>
         {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
         <span class="sr-only">Next</span>
