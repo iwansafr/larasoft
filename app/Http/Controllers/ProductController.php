@@ -180,6 +180,7 @@ class ProductController extends Controller
                     $home = new HomeController();
                     $data = $home->block();
                     $data['product'] = $product;
+                    $data['product_link'] = url('/product/' . $product->slug . '.' . $product->id);
                     return view('home/product/detail', ['data' => $data]);
                 } else {
                 }

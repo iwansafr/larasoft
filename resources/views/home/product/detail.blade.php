@@ -53,14 +53,13 @@
 
             <div class="mt-4 product-share">
               <script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v6.0"></script>
-        			{{-- <div class="fb-share-button" data-href="<?php echo base_url($this->uri->uri_string) ?>" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div> --}}
-              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url('/product/'.$data['product']->slug.'.'.$data['product']->id)}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore" class="text-gray">
+              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$data['product_link']}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore text-secondary">
                 <i class="fab fa-facebook-square fa-2x"></i>
               </a>
-              <a href="#" class="text-gray">
+              <a href="https://twitter.com/intent/tweet?text={{$data['product']->title.' '.$data['product_link']}}" target="_blank" class="twitter-share-button text-gray">
                 <i class="fab fa-twitter-square fa-2x"></i>
               </a>
-              <a href="#" class="text-gray">
+              <a href="mailto:?body={{$data['product']->title.' '.$data['product_link']}}" class="text-gray">
                 <i class="fas fa-envelope-square fa-2x"></i>
               </a>
             </div>
