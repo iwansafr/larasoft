@@ -60,8 +60,8 @@
                             <input type="hidden" name="icon" class="item-menu">
                         </div>
                         <div class="form-group">
-                            <label for="target">Type</label>
-                            <select name="target" id="target" class="form-control item-menu">
+                            <label for="type">Type</label>
+                            <select name="type" id="type" class="form-control item-menu">
                               @foreach ($type as $key => $value)
                                 <option value="{{$key}}">{{$value}}</option>
                               @endforeach

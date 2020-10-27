@@ -29,7 +29,40 @@
             </p>
             {{-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p> --}}
             {!!$data['product']->description!!}
-
+            @if (!empty($field))
+              @foreach ($field as $key => $value)
+                @php
+                    $name = $value['text'];
+                @endphp
+                <div class="form-group">
+                  @switch($value['type'])
+                      @case(0)
+                        <label for="{{$value['text']}}">{{$value['text']}}</label>
+                        <input type="text" name="{{str_replace('_',' ',$value['text'])}}" class="form-control">
+                          @break
+                      @case(1)
+                        <label for="{{$value['text']}}">{{$value['text']}}</label>
+                        <select name="{{str_replace('_',' ',$value['text'])}}" class="form-control">
+                          @if (!empty($value['options']))
+                            @php
+                                $options = explode(',',$value['options']);
+                            @endphp
+                              @foreach ($options as $opkey => $opvalue)
+                                  <option value="{{$opvalue}}">{{$opvalue}}</option>
+                              @endforeach
+                          @endif
+                        </select>
+                          @break
+                      @case(3)
+                        <label for="{{$value['text']}}">{{$value['text']}}</label>
+                        <input type="file" name="{{str_replace('_',' ',$value['text'])}}" class="form-control">
+                          @break
+                      @default
+                          
+                  @endswitch
+                </div>
+              @endforeach
+            @endif
             <hr>
             <h4>Available Colors</h4>
             
@@ -45,7 +78,6 @@
                 <small>Ex Tax: - </small>
               </h4>
             </div>
-
             <div class="mt-4">
               <div class="btn btn-secondary btn-lg btn-flat">
                 <i class="fas fa-cart-plus fa-lg mr-2"></i> 

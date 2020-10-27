@@ -154,6 +154,7 @@ class ProductCategoryController extends Controller
         $data->title = $request->title;
         $data->slug = $slug;
         $data->parent = $request->parent;
+        $data->custom_field_id = $request->custom_field_id;
         return $data;
     }
 }

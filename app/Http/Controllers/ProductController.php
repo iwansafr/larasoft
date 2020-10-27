@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductExport;
+use App\Models\CustomField;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
@@ -176,13 +177,24 @@ class ProductController extends Controller
             if (!empty($id)) {
                 $id = end($id);
                 $product = Product::find($id);
+                $field = [];
+                foreach($product->categories as $item)
+                {
+                    if(!empty($item->custom_field_id))
+                    {
+                        $custom_field_id = $item->custom_field_id;
+                        $custom_field = CustomField::find($custom_field_id);
+                        $field = $custom_field->param;
+                        $field = json_decode($field,1);
+                        break;
+                    }
+                }
                 if (!empty($product)) {
                     $home = new HomeController();
                     $data = $home->block();
                     $data['product'] = $product;
                     $data['product_link'] = url('/product/' . $product->slug . '.' . $product->id);
-                    return view('home/product/detail', ['data' => $data]);
-                } else {
+                    return view('home/product/detail', ['data' => $data,'field'=>$field]);
                 }
             }
         }
