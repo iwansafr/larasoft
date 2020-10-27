@@ -21,6 +21,12 @@
           </div>
           <div class="col-12 col-sm-6">
             <h3 class="my-3">{{$data['product']->title}}</h3>
+            <p>
+              Category : 
+              @foreach ($data['product']->categories as $item)
+                <span class="badge badge-secondary">{{$item->title}}</span>
+              @endforeach
+            </p>
             {{-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p> --}}
             {!!$data['product']->description!!}
 
