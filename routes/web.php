@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryJsonController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ContentJsonController;
+use App\Http\Controllers\CustomFieldController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
@@ -55,6 +56,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('config/homepage', [ConfigController::class, 'homepage']);
         Route::post('config/homepage', [ConfigController::class, 'homepagesave']);
+
+        Route::resource('customfield', CustomFieldController::class);
+        Route::get('customfieldjson', [CustomFieldController::class, 'json']);
+        Route::get('customfieldcustom/{numeric}', [CustomFieldController::class, 'custom']);
+        Route::get('customfieldform/{numeric}', [CustomFieldController::class, 'from']);
+        Route::put('updatecustom_field', [CustomFieldController::class, 'updatecustom_field']);
 
         Route::get('/forbidden', function () {
             return view('page.forbidden', ['status' => 'danger', 'title' => '404', 'msg' => 'You Dont Have Permission to Access This Page']);

@@ -109,6 +109,12 @@ class AppServiceProvider extends ServiceProvider
                             'icon' => 'fa-circle',
                             'role' => $role,
                         ],
+                        [
+                            'title' => 'Custom Field',
+                            'link' => '/admin/customfield',
+                            'icon' => 'fa-circle',
+                            'role' => $role,
+                        ],
                     ],
                 ],
                 [
