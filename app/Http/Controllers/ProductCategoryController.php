@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomField;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
@@ -17,11 +18,17 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $category = ProductCategory::all();
+        $custom_fields = CustomField::all();
+        $custom_field = ['None'];
+        foreach ($custom_fields as $key => $value) 
+        {
+            $custom_field[$value['id']] = $value['title'];
+        }
         $data = ['None'];
         foreach ($category as $key => $value) {
             $data[$value['id']] = $value['title'];
         }
-        return view('admin.product.category.index', ['title' => 'Category', 'action' => 'productcategory', 'parent' => $data, 'data_parent' => $data]);
+        return view('admin.product.category.index', ['title' => 'Category', 'action' => 'productcategory', 'parent' => $data, 'data_parent' => $data,'custom_field'=>$custom_field]);
     }
 
     /**
@@ -73,6 +80,12 @@ class ProductCategoryController extends Controller
     {
         $cur = ProductCategory::find($id);
         $category = ProductCategory::all();
+        $custom_fields = CustomField::all();
+        $custom_field = ['None'];
+        foreach ($custom_fields as $key => $value) 
+        {
+            $custom_field[$value['id']] = $value['title'];
+        }
         $data = ['None'];
         $data_parent = ['None'];
         foreach ($category as $key => $value) {
@@ -81,7 +94,7 @@ class ProductCategoryController extends Controller
             }
             $data_parent[$value['id']] = $value['title'];
         }
-        return view('admin.product.category.index', ['title' => 'Category', 'method' => 'PUT', 'action' => 'productcategory/' . $id, 'parent' => $data, 'data_parent' => $data_parent, 'data' => $cur]);
+        return view('admin.product.category.index', ['title' => 'Category', 'method' => 'PUT', 'action' => 'productcategory/' . $id, 'parent' => $data, 'data_parent' => $data_parent, 'data' => $cur,'custom_field'=>$custom_field]);
     }
 
     /**

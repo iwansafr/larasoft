@@ -20,6 +20,7 @@
       $title = !empty($data->title) ? $data->title : '';
       $slug = !empty($data->slug) ? $data->slug : '';
       $selected_parent = !empty($data->parent) ? $data->parent : '';
+      $selected_custom_field_id = !empty($data->custom_field_id) ? $data->custom_field_id : '';
   @endphp
   <section class="content">
     <div class="container-fluid">
@@ -52,6 +53,9 @@
                 </div>
                 <div class="form-group">
                   @include('form.text',['name'=>'slug','value'=>$slug])
+                </div>
+                <div class="form-group">
+                  @include('form.select',['name'=>'custom_field_id','label'=>'Custom Field','data'=>$custom_field,'selected'=>$selected_custom_field_id])
                 </div>
               </div>
               <div class="card-footer">

@@ -52,13 +52,13 @@
             </div>
 
             <div class="mt-4 product-share" id="share-button">
-              <a target="#share-button" onClick="MyWindow=window.open('https://www.facebook.com/sharer/sharer.php?u={{$data['product_link']}}&amp;src=sdkpreparse','MyWindow','width=600,height=300');" type="button" class="text-secondary">
+              <a target="#share-button" onClick="MyWindow=window.open('https://www.facebook.com/sharer/sharer.php?u={{$data['product_link']}}&amp;src=sdkpreparse','MyWindow','width=600,height=300');" class="btn p-0 text-secondary">
                 <i class="fab fa-facebook-square fa-2x"></i>
               </a>
-              <a href="#share-button" onClick="MyWindow=window.open('https://twitter.com/intent/tweet?text={{$data['product']->title.' '.$data['product_link']}}','MyWindow','width=600,height=300');" class="twitter-share-button text-gray">
+              <a href="#share-button" onClick="MyWindow=window.open('https://twitter.com/intent/tweet?text={{$data['product']->title.' '.$data['product_link']}}','MyWindow','width=600,height=300');" class="btn p-0 twitter-share-button text-secondary">
                 <i class="fab fa-twitter-square fa-2x"></i>
               </a>
-              <a href="mailto:?body={{$data['product']->title.' '.$data['product_link']}}" class="text-gray">
+              <a href="mailto:?body={{$data['product']->title.' '.$data['product_link']}}" class="btn p-0 text-secondary">
                 <i class="fas fa-envelope-square fa-2x"></i>
               </a>
             </div>

@@ -14,8 +14,11 @@
   }
   
   $multiple = !empty($multiple) ? $multiple : 0;
-  $label = str_replace('_',' ',$name);
-  $label = str_replace('[]','',$label);
+  if(empty($label))
+  {
+    $label = str_replace('_',' ',$name);
+    $label = str_replace('[]','',$label);
+  }
 @endphp
 <label>{{$label}}</label>
 <select class="@if(!empty($select2)){{'form-control select2'}}@else{{'custom-select'}}@endif" @if(!empty($multiple)){{'multiple'}}@endif style="width:100%;" name="{{$name}}">
