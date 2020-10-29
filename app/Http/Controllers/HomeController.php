@@ -30,7 +30,6 @@ class HomeController extends Controller
             $slider_id = $home_config->content_slider;
             $product_top_id = $home_config->product_top;
             $product_slide_id = $home_config->product_slide;
-
             if (!empty($slider_id)) {
                 $slider_content = Content::whereHas('categories', function (Builder $query) use ($slider_id) {
                     $query->where('id', '=', $slider_id);

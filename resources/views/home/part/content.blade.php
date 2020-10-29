@@ -1,4 +1,7 @@
 @extends('home.index')
+@push('slider')
+    @include('home.part.slider')
+@endpush
 @section('content')
   <style>
     .box-title::before{
