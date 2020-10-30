@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   @include('home.part.meta')
+  @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -49,5 +50,6 @@
 <script src="/AdminLte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/AdminLte/dist/js/adminlte.min.js"></script>
+@livewireScripts
 </body>
 </html>

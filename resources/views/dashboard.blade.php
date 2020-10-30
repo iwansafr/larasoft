@@ -47,5 +47,6 @@
 	}
   li_active();
 </script>
+@livewireScripts
 </body>
 </html>
